@@ -16,7 +16,7 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
-    /// Get all users - Updated via GitHub Actions!
+    /// Get all users - Updated via GitHub Actions! One more update via Github Actions!
     /// </summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
