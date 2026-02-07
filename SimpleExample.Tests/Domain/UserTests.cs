@@ -26,18 +26,18 @@ public class UserTests
 
         // Assert
         act.Should().Throw<ArgumentException>()
-           .WithMessage("*Etunimi ei voi olla tyhjä*");
+           .WithMessage("*First name cannot be empty*");
     }
 
     [Fact]
     public void Constructor_WithTooShortFirstName_ShouldThrowArgumentException()
     {
         // Act
-        Action act = () => new User("Ma", "Meikäläinen", "test@test.com");
+        Action act = () => new User("AB", "Meikäläinen", "test@test.com");
 
         // Assert
         act.Should().Throw<ArgumentException>()
-           .WithMessage("*Etunimen tulee olla vähintään 3 merkkiä pitkä*");
+           .WithMessage("*First name must be at least 3 characters long*");
     }
 
     [Fact]
@@ -48,18 +48,18 @@ public class UserTests
 
         // Assert
         act.Should().Throw<ArgumentException>()
-           .WithMessage("*Sukunimi ei voi olla tyhjä*");
+           .WithMessage("*Last name cannot be empty*");
     }
 
     [Fact]
     public void Constructor_WithTooShortLastName_ShouldThrowArgumentException()
     {
         // Act
-        Action act = () => new User("Matti", "Me", "test@test.com");
+        Action act = () => new User("Matti", "XY", "test@test.com");
 
         // Assert
         act.Should().Throw<ArgumentException>()
-           .WithMessage("*Sukunimen tulee olla vähintään 3 merkkiä pitkä*");
+           .WithMessage("*Last name must be at least 3 characters long*");
     }
 
     [Fact]
@@ -70,8 +70,7 @@ public class UserTests
 
         // Assert
         act.Should().Throw<ArgumentException>()
-           .Where(e => e.ParamName == "email")
-           .WithMessage("*kelvollinen*");
+           .WithMessage("*Email must be valid*");
     }
 
     [Fact]
@@ -122,8 +121,7 @@ public class UserTests
 
         // Assert
         act.Should().Throw<ArgumentException>()
-           .Where(e => e.ParamName == "firstName")
-           .WithMessage("*Etunimi*");
+           .WithMessage("*First name must be at least 3 characters long*");
     }
 
     [Fact]
@@ -150,6 +148,6 @@ public class UserTests
 
         // Assert
         act.Should().Throw<ArgumentException>()
-           .WithMessage("*Sähköpostin tulee olla kelvollinen*");
+           .WithMessage("*Email must be valid*");
     }
 }

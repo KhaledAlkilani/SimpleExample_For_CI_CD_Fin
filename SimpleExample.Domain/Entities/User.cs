@@ -31,22 +31,22 @@ public class User : BaseEntity
         ArgumentNullException.ThrowIfNull(lastName);
 
         if (string.IsNullOrWhiteSpace(firstName))
-            throw new ArgumentException("Etunimi ei voi olla tyhjä.", nameof(firstName));
+            throw new ArgumentException("First name cannot be empty", nameof(firstName));
 
         if (string.IsNullOrWhiteSpace(lastName))
-            throw new ArgumentException("Sukunimi ei voi olla tyhjä.", nameof(lastName));
+            throw new ArgumentException("Last name cannot be empty", nameof(lastName));
 
         if (firstName.Length < 3)
-            throw new ArgumentException("Etunimen tulee olla vähintään 3 merkkiä pitkä.", nameof(firstName));
+            throw new ArgumentException("First name must be at least 3 characters long.", nameof(firstName));
 
         if (lastName.Length < 3)
-            throw new ArgumentException("Sukunimen tulee olla vähintään 3 merkkiä pitkä.", nameof(lastName));
+            throw new ArgumentException("Last name must be at least 3 characters long.", nameof(lastName));
 
         if (firstName.Length > 100)
-            throw new ArgumentException("Etunimi voi olla enintään 100 merkkiä pitkä.", nameof(firstName));
+            throw new ArgumentException("First name can be at most 100 characters long.", nameof(firstName));
 
         if (lastName.Length > 100)
-            throw new ArgumentException("Sukunimi voi olla enintään 100 merkkiä pitkä.", nameof(lastName));
+            throw new ArgumentException("Last name can be at most 100 characters long.", nameof(lastName));
 
         FirstName = firstName;
         LastName = lastName;
@@ -60,13 +60,13 @@ public class User : BaseEntity
         ArgumentNullException.ThrowIfNull(email);
 
         if (string.IsNullOrWhiteSpace(email))
-            throw new ArgumentException("Sähköposti ei voi olla tyhjä.", nameof(email));
+            throw new ArgumentException("Email must be valid.", nameof(email));
 
         if (!email.Contains('@'))
-            throw new ArgumentException("Sähköpostin tulee olla kelvollinen.", nameof(email));
+            throw new ArgumentException("Email must be valid.", nameof(email));
 
         if (email.Length > 255)
-            throw new ArgumentException("Sähköposti voi olla enintään 255 merkkiä pitkä.", nameof(email));
+            throw new ArgumentException("Email can be at most 255 characters long.", nameof(email));
 
         Email = email;
     }
