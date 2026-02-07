@@ -31,20 +31,20 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         entity.Id = Guid.NewGuid();
         entity.CreatedAt = DateTime.UtcNow;
         entity.UpdatedAt = DateTime.UtcNow;
-        
+
         await _dbSet.AddAsync(entity);
         await _context.SaveChangesAsync();
-        
+
         return entity;
     }
 
     public async Task<T> UpdateAsync(T entity)
     {
         entity.UpdatedAt = DateTime.UtcNow;
-        
+
         _dbSet.Update(entity);
         await _context.SaveChangesAsync();
-        
+
         return entity;
     }
 
