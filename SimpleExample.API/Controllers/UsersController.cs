@@ -86,4 +86,21 @@ public class UsersController : ControllerBase
         }
         return NoContent();
     }
+
+    /// <summary>
+    /// Test endpoint to verify GitHub Actions deployment
+    /// </summary>
+    [HttpGet("test")]
+    public ActionResult<IEnumerable<string>> GetNames()
+    {
+        var names = new List<string>
+        {
+            "khaled",
+            "albert",
+            "alfred",
+            "aaron"
+        };
+
+        return Ok(names);
+    }
 }
