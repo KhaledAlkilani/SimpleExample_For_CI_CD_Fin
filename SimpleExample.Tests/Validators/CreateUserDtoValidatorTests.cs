@@ -25,7 +25,7 @@ public class CreateUserDtoValidatorTests
 
         var result = _validator.TestValidate(dto);
 
-        // intentionally wrong expectation for the assignment step
-        result.ShouldNotHaveAnyValidationErrors();
+        result.ShouldHaveValidationErrorFor(x => x.FirstName)
+           .WithErrorMessage("Etunimi on pakollinen");
     }
 }
