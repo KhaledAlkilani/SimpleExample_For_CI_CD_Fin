@@ -118,4 +118,17 @@ public class InMemoryUserRepository : IUserRepository
             return Task.FromResult(user);
         }
     }
+
+    public void DeleteAsync(User existingUser)
+    {
+        var userId = existingUser.Id;
+        lock (_lock)
+        {
+            User? user = _users.FirstOrDefault(u => u.Id == userId);
+            if (user != null)
+            {
+                _users.Remove(user);
+            }
+        }
+    }
 }

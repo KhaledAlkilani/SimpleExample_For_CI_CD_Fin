@@ -27,6 +27,13 @@ public class UserService : IUserService
 
     public async Task<UserDto> CreateAsync(CreateUserDto createUserDto)
     {
+        // APPLICATION LAYER VALIDOINTI: Tarkista duplikaatti
+        User? existingUser = await _userRepository.GetByEmailAsync(createUserDto.Email);
+        if (existingUser != null)
+        {
+            throw new InvalidOperationException($"Käyttäjä sähköpostilla {createUserDto.Email} on jo olemassa");
+        }
+
         User user = new User(
             createUserDto.FirstName,
             createUserDto.LastName,

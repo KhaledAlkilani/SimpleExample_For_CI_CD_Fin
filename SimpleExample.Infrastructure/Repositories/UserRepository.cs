@@ -11,6 +11,11 @@ public class UserRepository : GenericRepository<User>, IUserRepository
     {
     }
 
+    public void DeleteAsync(User existingUser)
+    {
+        _dbSet.Remove(existingUser);
+    }
+
     public async Task<User?> GetByEmailAsync(string email)
     {
         return await _dbSet.FirstOrDefaultAsync(u => u.Email == email);
