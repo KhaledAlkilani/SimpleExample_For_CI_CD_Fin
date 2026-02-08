@@ -7,9 +7,19 @@ namespace SimpleExample.Application.Validators
     {
         public CreateUserDtoValidator()
         {
-            RuleFor(x => x.FirstName).NotEmpty();
-            RuleFor(x => x.LastName).NotEmpty();
-            RuleFor(x => x.Email).NotEmpty().EmailAddress();
+            RuleFor(x => x.FirstName)
+                .NotEmpty()
+                .WithMessage("Etunimi on pakollinen");
+
+            RuleFor(x => x.LastName)
+                .NotEmpty()
+                .WithMessage("Sukunimi on pakollinen");
+
+            RuleFor(x => x.Email)
+                .NotEmpty()
+                .WithMessage("Sähköposti on pakollinen")
+                .EmailAddress()
+                .WithMessage("Sähköpostin tulee olla kelvollinen");
         }
     }
 }
